@@ -15,7 +15,7 @@ int main(void){
         int ih;
         if((fp=fopen("u.dat","r"))!=NULL){
                 for(ih=0;ih<NDAT;ih++){
-                        fscanf(fp,"%f %f %f %f %f",&t[ih],&s[ih],&a,&b,&s[ih]);
+                        fscanf(fp,"%f %f %f %f %f",&t[ih],&x[ih],&a,&b,&s[ih]);
                         s[ih]=PRECISION;
                 }
                 fclose(fp);
