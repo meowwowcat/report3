@@ -13,7 +13,7 @@ int main(void){
 
         if((fp=fopen("u.dat","r"))!=NULL){
                 for(ih=0;ih<NDAT;ih++){
-                        fscanf(fp,"%f %f %f %f %f",&t[ih],&x[ih],&s[ih],&s[ih]);
+                        fscanf(fp,"%f %f %f %f",&t[ih],&x[ih],&y[ih],&s[ih]);
                 }
                 fclose(fp);
         }
