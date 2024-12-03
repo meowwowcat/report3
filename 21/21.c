@@ -6,20 +6,24 @@
 
 int main(void){
         FILE*fp;
-        float t[NDAT],x[NDAT],s[NDAT],y[NDAT];
+        float t[NDAT],x[NDAT],s[NDAT],y[NDAT],exp_y[NDAT],error_y[NDAT],err[NDAT];
         float para_v,para_x0;
         float err_v,err_x0;
         int ih;
 
         if((fp=fopen("u.dat","r"))!=NULL){
                 for(ih=0;ih<NDAT;ih++){
-                        fscanf(fp,"%f %f %f %f",&t[ih],&x[ih],&y[ih],&s[ih]);
+                        fscanf(fp,"%f %f %f %f %f",&t[ih],&x[ih],&y[ih],&exp_y[ih],&error_y[ih]); 
                 }
                 fclose(fp);
         }
         else{
                 printf("FILE OPEN ERROR\n");
                 return -1;
+        }
+
+        for(ih = 0; ih < NDAT ; ih++){
+                s[ih]=PRECISION;
         }
 
         float SUM_T2 =0, SUM_T =0, SUM_X =0, SUM_TX =0,SUM_1 =0;
@@ -37,8 +41,7 @@ int main(void){
         err_v = sqrt(SUM_1 / (SUM_T2 * SUM_1 - SUM_T * SUM_T));
         err_x0 = sqrt(SUM_T2 / (SUM_T2 * SUM_1 - SUM_T * SUM_T));
 
-        printf("v = %f, x0 = %f\n",para_v,para_x0);
-        printf("Error in v = %f, Error in x0 = %f\n",err_v,err_x0);
+        printf("v = %f +- %f, x0 = %f +-%f\n",para_v,err_v,para_x0,err_x0);
 
         return 0;
 }
